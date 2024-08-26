@@ -6,18 +6,27 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read
     this.info = function() {
-      return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'has been read' : 'not read yet'}.`
+      return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read === 'true' ? 'has been read' : 'has not been read yet'}.`
     };
   }
-const userBook = new Book
-userBook.title = prompt('enter book title')
-userBook.author = prompt('enter book author')
-userBook.pages = prompt('enter book page length')
-userBook.read = prompt('enter true if read, false if not read')
+let addBook = document.getElementById('addBook')
 
-console.log(userBook.info())
+addBook.addEventListener('click', (addBook) => {
+    addBookToLibrary()
+    console.log(addBook)
+})
 
-function addBookToLibrary() {
-  // do stuff here
+
+
+function addBookToLibrary(addBook) {
+    addBook.title = prompt('enter book title')
+    addBook.author = prompt('enter book author')
+    addBook.pages = prompt('enter book page length')
+    addBook.read = prompt('enter true if read')
 }
+
+
+
+
+
 
