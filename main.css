@@ -1,17 +1,30 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0 auto;
+    height: 100vh;
     background-color: #6c3a0f;
 }
 
+.header {
+    background-color: rgb(194, 71, 37);
+}
+
 h1 {
-    margin: 20px;
-    font-size: 2em;
-    margin-bottom: 20px;
+    margin-left: 20px;
+    padding-top: 24px;
 }
 
 #newBookBtn {
-    margin: 20px;
+    border-radius: 8px;
+    margin-left: 20px;
 }
 
 .label {
@@ -20,17 +33,16 @@ h1 {
     justify-content: center;
 }
 
-#checkbox {
+/* #checkbox {
     margin-top: 4px;
-}
+} */
 
 #bookForm {
     display: flex;
     align-content: center;
     align-items: center;
-    margin: 20px;
-    padding: 20px;
-    width: 300px;
+    margin-left: 20px;
+    width:max-content;
     background-color: #ddd;
 }
 
@@ -45,8 +57,8 @@ h1 {
     background-color: #ddd;
     margin: 20px;
     padding: 20px;
-    width: 300px;
-    border-radius: 5px;
+    width: 250px;
+    border-radius: 8px;
 }
 
 .card button {

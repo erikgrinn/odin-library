@@ -67,12 +67,15 @@ function toggleReadStatus(event) {
 
 // show book form on add new book
 document.getElementById('newBookBtn').addEventListener('click', () => {
+  document.getElementById('newBookBtn').style.display = 'none';
     document.getElementById('bookForm').style.display = 'block';
 });
 
 // submit form
 document.getElementById('bookForm').addEventListener('submit', function(event) {
     event.preventDefault(); //prevent default form action because not using database
+
+
 
     // define inputs as variables and send to function
     const title = document.getElementById('title').value;
@@ -84,4 +87,5 @@ document.getElementById('bookForm').addEventListener('submit', function(event) {
     // clear form and hide after submitting
     document.getElementById('bookForm').reset();
     document.getElementById('bookForm').style.display = 'none';
+    document.getElementById('newBookBtn').style.display = 'block';
 });
