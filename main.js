@@ -66,26 +66,31 @@ function toggleReadStatus(event) {
 }
 
 // show book form on add new book
-document.getElementById('newBookBtn').addEventListener('click', () => {
-  document.getElementById('newBookBtn').style.display = 'none';
-    document.getElementById('bookForm').style.display = 'block';
+const dialog = document.querySelector('dialog')
+const newBookBtn = document.getElementById('newBookBtn')
+newBookBtn.addEventListener('click', () => {
+  dialog.showModal();
+  
 });
 
 // submit form
-document.getElementById('bookForm').addEventListener('submit', function(event) {
+const bookForm = document.getElementById('bookForm')
+bookForm.addEventListener('submit', function(event) {
     event.preventDefault(); //prevent default form action because not using database
 
+  // define inputs as variables and send to function
+  const title = document.getElementById('title').value;
+  const author = document.getElementById('author').value;
+  const pages = document.getElementById('pages').value;
+  const read = document.getElementById('read').checked;
+  addBookToLibrary(title, author, pages, read);
 
-
-    // define inputs as variables and send to function
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').checked;
-    addBookToLibrary(title, author, pages, read);
-
-    // clear form and hide after submitting
-    document.getElementById('bookForm').reset();
-    document.getElementById('bookForm').style.display = 'none';
-    document.getElementById('newBookBtn').style.display = 'block';
+  bookForm.reset()
+  dialog.close();
 });
+
+const cancelBtn = document.getElementById('cancel')
+cancelBtn.addEventListener('click', () => {
+  bookForm.reset()
+  dialog.close()
+})
