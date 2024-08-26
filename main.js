@@ -32,7 +32,7 @@ function displayLibrary() {
         // template literal
         card.innerHTML = `
             <h3>${book.title}</h3>
-            <p>by ${book.author}</p>
+            <p><em>by ${book.author}</em></p>
             <p>${book.pages} pages</p>
             <p>${book.read ? 'Read' : 'Not Read'}</p>
             <button class="toggleRead">Toggle Read Status</button>
