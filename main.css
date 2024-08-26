@@ -6,6 +6,7 @@ body {
 }
 
 .header {
+    margin: 0;
     background-color: rgb(194, 71, 37);
 }
 
