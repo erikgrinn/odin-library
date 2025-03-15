@@ -1,96 +1,95 @@
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
-Book.prototype.toggleRead = function() {
-    this.read = !this.read;
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
 };
 
 // add book to myLibrary array
 function addBookToLibrary(title, author, pages, read) {
-    const book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-    displayLibrary();
+  const book = new Book(title, author, pages, read);
+  myLibrary.push(book);
+  displayLibrary();
 }
 
 // display each library book
 function displayLibrary() {
-    const library = document.getElementById('library');
-    library.innerHTML = ''; // reset library div
+  const library = document.getElementById("library");
+  library.innerHTML = ""; // reset library div
 
-    // create entry for each book in myLibrary array
-    myLibrary.forEach((book, index) => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.setAttribute('data-index', index);
+  // create entry for each book in myLibrary array
+  myLibrary.forEach((book, index) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.setAttribute("data-index", index);
 
-        // template literal
-        card.innerHTML = `
+    // template literal
+    card.innerHTML = `
             <h3>${book.title}</h3>
             <p><em>by ${book.author}</em></p>
             <p>${book.pages} pages</p>
-            <p>${book.read ? 'Read' : 'Not Read'}</p>
+            <p>${book.read ? "Read" : "Not Read"}</p>
             <button class="toggleRead">Toggle Read Status</button>
             <button class="removeBook">Remove Book</button>
         `;
 
-        library.appendChild(card);
-    });
+    library.appendChild(card);
+  });
 
-    // add event listeners for each remove and toggle button added into card
-    document.querySelectorAll('.removeBook').forEach(button => {
-        button.addEventListener('click', removeBook);
-    });
+  // add event listeners for each remove and toggle button added into card
+  document.querySelectorAll(".removeBook").forEach((button) => {
+    button.addEventListener("click", removeBook);
+  });
 
-    document.querySelectorAll('.toggleRead').forEach(button => {
-        button.addEventListener('click', toggleReadStatus);
-    });
+  document.querySelectorAll(".toggleRead").forEach((button) => {
+    button.addEventListener("click", toggleReadStatus);
+  });
 }
 
 // remove and toggle read status per index
 function removeBook(event) {
-    const index = event.target.parentElement.getAttribute('data-index');
-    myLibrary.splice(index, 1);
-    displayLibrary();
+  const index = event.target.parentElement.getAttribute("data-index");
+  myLibrary.splice(index, 1);
+  displayLibrary();
 }
 
 function toggleReadStatus(event) {
-    const index = event.target.parentElement.getAttribute('data-index');
-    myLibrary[index].toggleRead();
-    displayLibrary();
+  const index = event.target.parentElement.getAttribute("data-index");
+  myLibrary[index].toggleRead();
+  displayLibrary();
 }
 
 // show book form on add new book
-const dialog = document.querySelector('dialog')
-const newBookBtn = document.getElementById('newBookBtn')
-newBookBtn.addEventListener('click', () => {
+const dialog = document.querySelector("dialog");
+const newBookBtn = document.getElementById("newBookBtn");
+newBookBtn.addEventListener("click", () => {
   dialog.showModal();
-  
 });
 
 // submit form
-const bookForm = document.getElementById('bookForm')
-bookForm.addEventListener('submit', function(event) {
-    event.preventDefault(); //prevent default form action because not using database
+const bookForm = document.getElementById("bookForm");
+bookForm.addEventListener("submit", function (event) {
+  event.preventDefault(); //prevent default form action because not using database
 
   // define inputs as variables and send to function
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const pages = document.getElementById('pages').value;
-  const read = document.getElementById('read').checked;
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const pages = document.getElementById("pages").value;
+  const read = document.getElementById("read").checked;
   addBookToLibrary(title, author, pages, read);
 
-  bookForm.reset()
+  bookForm.reset();
   dialog.close();
 });
 
-const cancelBtn = document.getElementById('cancel')
-cancelBtn.addEventListener('click', () => {
-  bookForm.reset()
-  dialog.close()
-})
+const cancelBtn = document.getElementById("cancel");
+cancelBtn.addEventListener("click", () => {
+  bookForm.reset();
+  dialog.close();
+});
